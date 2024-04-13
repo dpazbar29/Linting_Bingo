@@ -4,7 +4,6 @@ package bingo
 import java.io.File
 import java.io.IOException
 
-
 /**
  * Clase Usuario
  * @param nombreUsuario Nombre del usuario
@@ -12,7 +11,6 @@ import java.io.IOException
  * @constructor Crea un usuario con un nombre y una contraseña
  */
 class Usuario(private val nombreUsuario: String, val password: String)
-
 
 /**
  * Crear un archivo para almacenar los usuarios
@@ -35,14 +33,16 @@ fun crearArchivoBaseDatos(nombreArchivo: String): File {
     return archivo
 }
 
-
 /**
  * Buscar un usuario en la base de datos
  * @param nombreUsuario Nombre del usuario
  * @param baseDatos Fichero que almacena los usuarios
  * @return usuario encontrado // null si no existe el usuario
  */
-fun obtenerUsuario(nombreUsuario: String, baseDatos: File): Usuario? {
+fun obtenerUsuario(
+    nombreUsuario: String,
+    baseDatos: File,
+): Usuario? {
     try {
         baseDatos.useLines { lines ->
             for (linea in lines) {
@@ -58,7 +58,6 @@ fun obtenerUsuario(nombreUsuario: String, baseDatos: File): Usuario? {
     return null
 }
 
-
 /**
  * Crea un usuario
  * @param nombreUsuario nombre del nuevo usuario
@@ -66,7 +65,11 @@ fun obtenerUsuario(nombreUsuario: String, baseDatos: File): Usuario? {
  * @param baseDatos Fichero que almacena los usuarios
  * @return true si se ha registrado el usuario // false si no se ha podido registrar
  */
-fun registro(nombreUsuario: String, password: String, baseDatos: File): Boolean {
+fun registro(
+    nombreUsuario: String,
+    password: String,
+    baseDatos: File,
+): Boolean {
     try {
         if (nombreUsuario.isBlank() || password.isBlank()) {
             println("Error: El nombre de usuario o la contraseña no pueden estar vacíos.")
@@ -103,7 +106,6 @@ fun registro(nombreUsuario: String, password: String, baseDatos: File): Boolean 
     }
 }
 
-
 /**
  * Permite iniciar sesión con un usuario que esté almacenado en la base de datos
  * @param nombreUsuario nombre del usuario
@@ -111,7 +113,11 @@ fun registro(nombreUsuario: String, password: String, baseDatos: File): Boolean 
  * @param baseDatos fichero que almacena los usuarios
  * @return true si el usuario ha podido iniciar sesión // false si no ha podido iniciar sesión
  */
-fun iniciarSesion(nombreUsuario: String, password: String, baseDatos: File): Boolean {
+fun iniciarSesion(
+    nombreUsuario: String,
+    password: String,
+    baseDatos: File,
+): Boolean {
     try {
         if (nombreUsuario.isBlank() || password.isBlank()) {
             println("Error: El nombre de usuario o la contraseña no pueden estar vacíos.")
@@ -133,13 +139,11 @@ fun iniciarSesion(nombreUsuario: String, password: String, baseDatos: File): Boo
                 return iniciarSesion(nuevoNombreUsuario, nuevaPassword, baseDatos)
             }
         } while (usuario == null || usuario.password != password)
-
     } catch (e: IOException) {
         println("Error al iniciar sesión ${e.message}")
         return false
     }
 }
-
 
 /**
  * Elimina la cuenta de un usuario
@@ -148,7 +152,11 @@ fun iniciarSesion(nombreUsuario: String, password: String, baseDatos: File): Boo
  * @param baseDatos fichero que almacena los usuarios
  * @return true si la cuenta se ha eliminado // false si la cuenta no se ha podido eliminar
  */
-fun eliminarCuenta(nombreUsuario: String, password: String, baseDatos: File): Boolean {
+fun eliminarCuenta(
+    nombreUsuario: String,
+    password: String,
+    baseDatos: File,
+): Boolean {
     try {
         if (nombreUsuario.isBlank() || password.isBlank()) {
             println("Error: El nombre de usuario o la contraseña no pueden estar vacíos.")
@@ -178,7 +186,6 @@ fun eliminarCuenta(nombreUsuario: String, password: String, baseDatos: File): Bo
                 return eliminarCuenta(nuevoNombreUsuario, nuevaPassword, baseDatos)
             }
         } while (usuario == null || usuario.password != password)
-
     } catch (e: IOException) {
         println("Error al eliminar la cuenta: ${e.message}")
         return false

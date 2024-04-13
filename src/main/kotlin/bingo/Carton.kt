@@ -20,7 +20,6 @@ class Carton(val numeroCarton: Int) {
         }
     }
 
-
     /**
      * Muestra en consola el cartón del Bingo
      * */
@@ -40,7 +39,6 @@ class Carton(val numeroCarton: Int) {
             println("Error al imprimir el cartón: ${e.message}")
         }
     }
-
 
     /**
      * Coloca los números del cartón
@@ -65,38 +63,35 @@ class Carton(val numeroCarton: Int) {
                     } while (nuevoNumero in numeros)
                     numeros.add(nuevoNumero)
                     val escribirNumero: String = nuevoNumero.toString()
-                    if (escribirNumero.length < 2){
-                        matriz[fila][columna] = /*"0" + */nuevoNumero.toString()
-                    } else { matriz[fila][columna] = nuevoNumero.toString() }
-
+                    if (escribirNumero.length < 2) {
+                        matriz[fila][columna] = nuevoNumero.toString()
+                    } else {
+                        matriz[fila][columna] = nuevoNumero.toString()
+                    }
                 }
             }
         }
     }
-
-
     /**
      * Comprueba si el cartón tiene las líneas completadas
      * @return True si todas las líneas están completas // False si todas las líneas no están completas
      */
-    fun verificarLineas(): Boolean{
+    fun verificarLineas(): Boolean {
         var lineasTachadas = 0
-        for (linea in matriz){
+        for (linea in matriz) {
             var celdasLibres = 9
-            for (celda in linea){
-                if ((celda == "--") || (celda == "XX")){
+            for (celda in linea) {
+                if ((celda == "--") || (celda == "XX")) {
                     celdasLibres -= 1
                 }
             }
-            if (celdasLibres == 0){
+            if (celdasLibres == 0) {
                 lineasTachadas += 1
             }
         }
         this.lineasTachadas = lineasTachadas
         return lineasTachadas == 3
     }
-
-
     /**
      * Comprueba si todos lo numeros han salido para dar la condicion de victoria de bingo
      * @return True si hay bingo // False si no hay bingo
@@ -111,12 +106,8 @@ class Carton(val numeroCarton: Int) {
                 }
             }
         }
-
         return celdasMarcadas == 15
-
     }
-
-
     /**
      * Marca los huecos donde no se pondran numeros en cada fila
      * */
@@ -127,7 +118,6 @@ class Carton(val numeroCarton: Int) {
             var numero: Int
             var posicionOcupada: Boolean
             do {
-
                 do {
                     numero = (0..8).random()
                     posicionOcupada = posicionHuecos(fila, numero)
@@ -136,22 +126,21 @@ class Carton(val numeroCarton: Int) {
                 fila[numero] = huecoBlanco
                 contador += 1
             } while (contador < 4)
-
         }
     }
-
 
     /**
      * Verifica que huecos están marcados como huecos en blanco
      * @return True si la celda ya está marcada como hueco en blanco // False si la celda todavía no está marcada
      * */
-    private fun posicionHuecos(fila: Array<String>,columna:Int): Boolean{
-        val huecoBlanco= "--"
+    private fun posicionHuecos(
+        fila: Array<String>,
+        columna:
+        Int): Boolean {
+        val huecoBlanco = "--"
         val celda = fila[columna]
-
         return celda == huecoBlanco
     }
-
 
     /**
      * Marca el número en el carton si ha salido en el bombo con "XX".
@@ -170,5 +159,3 @@ class Carton(val numeroCarton: Int) {
         }
     }
 }
-
-

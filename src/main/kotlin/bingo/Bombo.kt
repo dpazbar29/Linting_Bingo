@@ -16,7 +16,7 @@ object Bombo {
         var numero: Int
         do {
             numero = (1..90).random()
-        } while(numerosSalidos.contains(numero))
+        } while (numerosSalidos.contains(numero))
 
         numerosSalidos.add(numero)
         actualizarHistoriaNumeros(numero)
@@ -28,16 +28,13 @@ object Bombo {
      * @param numeroNuevo número que acaba de salir del bombo
      * */
     private fun actualizarHistoriaNumeros(numeroNuevo: Int) {
-
         if (historialUltimosNumeros.size == 10) {
             this.historialUltimosNumeros.removeAt(0)
             this.historialUltimosNumeros.add(numeroNuevo)
         } else {
             this.historialUltimosNumeros.add(numeroNuevo)
         }
-
     }
-
 
     /**
      * Mostrar por pantalla el historial de los 10 últimos números que han salido del bombo
@@ -51,7 +48,6 @@ object Bombo {
 
         println(cadena)
     }
-
 
     /**
      * Renicia el bombo. Vacía la listas de los números salidos

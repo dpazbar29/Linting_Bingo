@@ -1,7 +1,9 @@
-package bingo
-import java.util.*
-import java.io.File
+@file:Suppress("ktlint:standard:no-wildcard-imports")
 
+package bingo
+
+import java.io.File
+import java.util.*
 
 /**
  * Iniciar la simulación del bingo
@@ -50,7 +52,6 @@ fun jugar() {
                 }
             } catch (e: Exception) {
                 println("Error: ${e.message}")
-
             }
         }
 
@@ -66,7 +67,6 @@ fun jugar() {
         println("Error: ${e.message}")
     }
 }
-
 
 /**
  * Muestra el menu
@@ -89,7 +89,7 @@ fun mostrarMenuLogin(baseDatos: File): Boolean {
                 val contrasena = readlnOrNull().orEmpty()
                 registro(nombreUsuario, contrasena, baseDatos)
             }
-            2 ->  {
+            2 -> {
                 print("Nombre de usuario: ")
                 val nombreUsuario = readlnOrNull().orEmpty()
                 print("Contraseña: ")

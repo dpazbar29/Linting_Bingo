@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package bingo
 
 import java.util.*
@@ -8,29 +10,22 @@ import java.util.*
  */
 object Juego {
     /**Pantalla intermedia entre número y número del bombo que pide una validación por teclado*/
-    fun pasarRonda(){
+    fun pasarRonda() {
         println("Pulse ENTER para continuar al siguiente número...")
         Scanner(System.`in`).nextLine()
     }
 
-
-  /** Limpia la consola en sistemas operativos Linux y Windows
-   * Está muy cutre porque no hemos conseguido que funcione lo dejamos para el sprint 2*/
-  fun limpiarConsola() {
-      /**if (System.getProperty("os.name").contains("Windows")) {
-          ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor()
-      } else {
-          ProcessBuilder("clear").inheritIO().start().waitFor()
-      }**/
-
-      repeat(35) { println() }
-  }
-
+    /**
+     * Limpia la consola en sistemas operativos Linux y Windows
+     */
+    fun limpiarConsola() {
+        repeat(35) { println() }
+    }
 
     /**
-     * Pregunta al usuario el número de cartones que quiere simular con un minimo de 2 y maximo de 5
+     * Pregunta al usuario el número de cartones que quiere simular con un mínimo de 2 y máximo de 5
      * @return número de cartones elegidos por el jugador
-     * */
+     */
     fun mostrarNumeroCartones(): Int {
         val scanner = Scanner(System.`in`)
         var numCartones: Int
@@ -49,10 +44,9 @@ object Juego {
         return numCartones
     }
 
-
     /**
      * Te pregunta si quieres volver a iniciar el programa
-     * */
+     */
     fun repetirSimulacion(): Boolean {
         var jugarDeNuevo: String?
 
@@ -70,5 +64,4 @@ object Juego {
             }
         } while (true)
     }
-
 }
